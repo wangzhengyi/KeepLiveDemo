@@ -77,10 +77,11 @@ Android中对于内存的回收，主要依靠LowMemoryKiller来完成，是一�
 Android手机中进程被杀死可能有如下情况：
 
 | 进程杀死场景 | 调用接口 | 可能影响范围 |
+| -------     | ------ | ------ |
 | 触发系统进程管理机制 | Lowmemorykiller | 从进程importance值由大到小依次杀死，释放内存 |
 | 被第三方应用杀死（无Root） | killBackgroundProcess | 只能杀死OOM_ADJ为4以上的进程 |
 | 被第三方应用杀死（有Root） | force-stop或者kill|理论上可以杀死所有进程，一般只杀非系统关键进程和非前台和可见进程 |
-| 厂商杀进程功能 | force-stop或者kill |
+| 厂商杀进程功能 | force-stop或者kill | 理论上可以杀死所有进程，包括native进程 |
 | 用户主动“强行停止”进程| force-stop | 只能停用第三方进程 |
 
 综上，可以得出减少进程被杀死概率无非就是想办法提高进程优先级，减少进程在内存不足等情况下被杀死的概率.
