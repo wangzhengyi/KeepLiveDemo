@@ -22,6 +22,16 @@
             android:exported="false"
             android:finishOnTaskLaunch="false"
             android:theme="@style/liveActivityStyle" />
+
+        <service
+            android:name=".keeplive.KeepLiveService"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <srvice
+          android:name=".keeplive.KeepLiveService$InnerService"
+            android:enabled="true"
+            android:exported="false"/>
     </application>
 
 </manifest>

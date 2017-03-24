@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.wzy.devicetest.keeplive.KeepLiveReceiver;
+import com.wzy.devicetest.keeplive.KeepLiveService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initReceiver();
+        initService();
+    }
+
+    private void initService() {
+        startService(new Intent(this, KeepLiveService.class));
     }
 
     private void initReceiver() {
@@ -28,5 +34,11 @@ public class MainActivity extends AppCompatActivity {
         intentFilter.addAction(Intent.ACTION_USER_BACKGROUND);
         intentFilter.addAction(Intent.ACTION_USER_FOREGROUND);
         registerReceiver(mReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mReceiver);
+        super.onDestroy();
     }
 }
