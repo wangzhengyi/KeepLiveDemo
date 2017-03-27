@@ -40,7 +40,7 @@ public class KeepLiveService extends Service {
             }
         }).start();
         startService(new Intent(this, InnerService.class));
-        return super.onStartCommand(intent, flags, startId);
+        return Service.START_STICKY;
     }
 
     public static class InnerService extends Service {
